@@ -47,6 +47,8 @@ class TwistToVehicleControl(object):  # pylint: disable=too-few-public-methods
 
         self.pub = rospy.Publisher("/carla/{}/vehicle_control_cmd".format(role_name),
                                    CarlaEgoVehicleControl, queue_size=1)
+        #self.pub = rospy.Publisher("/carla/{}/vehicle_control_cmd_manual".format(role_name),
+        #                           CarlaEgoVehicleControl, queue_size=1)
 
     def twist_received(self, twist):
         """
