@@ -59,6 +59,7 @@ try:
     from pygame.locals import K_SPACE
     from pygame.locals import K_UP
     from pygame.locals import K_a
+    from pygame.locals import K_e
     from pygame.locals import K_d
     from pygame.locals import K_h
     from pygame.locals import K_m
@@ -225,8 +226,10 @@ class KeyboardControl(object):
                         'Manual' if self._control.manual_gear_shift else 'Automatic'))
                 elif self._control.manual_gear_shift and event.key == K_COMMA:
                     self._control.gear = max(-1, self._control.gear - 1)
+                    print( "gear down to %s"%(self._control.gear))
                 elif self._control.manual_gear_shift and event.key == K_PERIOD:
                     self._control.gear = self._control.gear + 1
+                    print( "gear up   to %s"%(self._control.gear))
                 elif event.key == K_p:
                     self._autopilot_enabled = not self._autopilot_enabled
                     self.set_autopilot(self._autopilot_enabled)
@@ -253,7 +256,9 @@ class KeyboardControl(object):
         """
         parse key events
         """
-        self._control.throttle = 1.0 if keys[K_UP] or keys[K_w] else 0.0
+        #self._control.throttle = 1.0 if keys[K_UP] or keys[K_w] else 0.0
+        self._control.throttle = 0.25 if keys[K_UP] or keys[K_w] else 0.0
+        self._control.throttle = 1.0 if keys[K_e] else self._control.throttle
         steer_increment = 5e-4 * milliseconds
         if keys[K_LEFT] or keys[K_a]:
             self._steer_cache -= steer_increment

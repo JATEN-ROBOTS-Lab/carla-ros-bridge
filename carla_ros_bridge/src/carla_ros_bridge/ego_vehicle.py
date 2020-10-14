@@ -240,6 +240,8 @@ class EgoVehicle(Vehicle):
             vehicle_control.steer = ros_vehicle_control.steer
             vehicle_control.throttle = ros_vehicle_control.throttle
             vehicle_control.reverse = ros_vehicle_control.reverse
+            #vehicle_control.gear = ros_vehicle_control.gear
+            #print("vehicle_control: %s"%(vehicle_control.gear))
             self.carla_actor.apply_control(vehicle_control)
             self._vehicle_control_applied_callback(self.get_id())
 
